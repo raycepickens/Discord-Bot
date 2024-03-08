@@ -1,17 +1,15 @@
-##import bot
-
 from typing import Final
 import os
 from discord import Intents, Client, Message
 from responses import handle_response
 
 TOKEN = "ask creator for token"
-
+#Bot Setup 
 intents: Intents = Intents.default()
 intents.message_content= True  # NOQA
 client: Client = Client(intents=intents)
 
-
+#Message functionality
 async def send_message(message: Message, user_message: str):
     if not user_message:
         print('message was empty')
@@ -25,15 +23,12 @@ async def send_message(message: Message, user_message: str):
         print(e)
 
 
-
+#Bot is running 
 @client.event
 async def on_ready():
     print(f'{client.user} is now running')
 
-
-
 @client.event
-
 async def on_message(message: Message):
     if message.author == client.user:
         return
@@ -43,11 +38,11 @@ async def on_message(message: Message):
     await send_message(message, user_message)
 
 
-
+#If token works then bot is running
 def main():
     client.run(token=TOKEN)
 
-
+#running main
 if __name__== "__main__":
 
     main()
