@@ -40,7 +40,11 @@ async def on_message(message: Message):
 
 #If token works then bot is running
 def main():
-    client.run(token=TOKEN)
+    try:
+        client.run(token=TOKEN,reconnect=True)
+    except Exception e:
+        print(e)
+
 
 #running main
 if __name__== "__main__":
